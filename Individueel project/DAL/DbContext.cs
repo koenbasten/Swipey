@@ -13,7 +13,7 @@ namespace DAL
 {
     public abstract class DbContext
     {
-        private string connectionstring = "Server=mssqlstud.fhict.local;Database=dbi527483_swipey;User Id=dbi527483_swipey;Password=Odul262A;TrustServerCertificate=True";
+        private string connectionstring = "Server=mssqlstud.fhict.local;Database=dbi527483_swipey;User Id=dbi527483_swipey;Password=;TrustServerCertificate=True";
         public SqlConnection conn { get;set; }
         
 
