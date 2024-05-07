@@ -1,0 +1,95 @@
+﻿@model RegisterViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/css/intlTelInput.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+
+<h1>Register</h1>
+@Model.Message
+@using (@Html.BeginForm("Register", "Register", FormMethod.Post))
+{
+    <div id="f1" class="Form active">
+        <label>Email</label><br />
+        @Html.TextBoxFor(model => model.Email)<br />
+        <label>Password</label><br />
+        @Html.PasswordFor(model => model.Password)<br />
+        <label>Please repeat your password</label><br />
+        @Html.PasswordFor(model => model.DupPassword)<br />
+        <label>Username</label><br />
+        @Html.TextBoxFor(model => model.UserName)<br />
+
+
+        <button type="button" onclick="NextForm(1);">Next</button>
+    </div>
+
+    <div id="f2" class="Form">
+        <label>Firstname</label><br />
+        @Html.TextBoxFor(model => model.FirstName)<br />
+        <label>Lastname</label><br />
+        @Html.TextBoxFor(model => model.LastName)<br />
+        <label>PhoneNumber</label><br />
+        <input type="text" id="phone" name="phone" placeholder="Enter phone number"><br />
+        @Html.RadioButtonFor(m => m.Gender, true) <label>Male</label>
+        @Html.RadioButtonFor(m => m.Gender, false) <label>Female</label><br />
+        <input type="text" id="datepicker" name="dateofbirth"placeholder="Select date" />
+
+        <button type="button" onclick="PreviousForm(2);">Previous</button>
+        <button type="button" onclick="NextForm(2);">Next</button><br />    
+            
+
+    </div>
+
+    <div id="f3" class="Form">
+
+        <button type="button" onclick="PreviousForm(3);">Previous</button>
+
+    </div>
+
+
+    <button>Submit</button>
+}
+<script>
+    function NextForm(x) {
+        document.getElementById("f" + x).classList.remove("active")
+
+        document.getElementById("f" + (x + 1)).classList.add("active")
+
+    }
+    function PreviousForm(x) {
+        document.getElementById("f" + x).classList.remove("active")
+
+        document.getElementById("f" + (x - 1)).classList.add("active")
+    }
+</script>
+
+
+<style>
+    .Form {
+        display: none;
+    }
+
+    .active {
+        display: block;
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/js/intlTelInput.min.js"></script>
+<script>
+    const input = document.querySelector("#phone");
+    window.intlTelInput(input, {
+        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@21.2.7/build/js/utils.js",
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    // Initialize Flatpickr with default year
+    flatpickr("#datepicker", {
+        defaultDate: "2005-01-01", // Set default date to January 1, 2024
+        dateFormat: "Y-m-d" // Set date format
+    });
+</script>
